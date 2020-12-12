@@ -9,13 +9,13 @@ const App = () => {
 
   const changeTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('react-app-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
     setTheme(newTheme);
   };
 
   useEffect(() => {
     const theme = localStorage.getItem('theme')
-      ? localStorage.getItem('react-app-theme')
+      ? localStorage.getItem('theme')
       : 'light';
 
     setTheme(theme);
