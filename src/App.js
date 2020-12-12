@@ -1,5 +1,5 @@
 import Content from './components/content';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Container, lightTheme, darkTheme } from './styled/styled';
 
@@ -8,8 +8,18 @@ const App = () => {
   const currentTheme = theme === 'light' ? lightTheme : darkTheme;
 
   const changeTheme = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('react-app-theme', newTheme);
+    setTheme(newTheme);
   };
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+      ? localStorage.getItem('react-app-theme')
+      : 'light';
+
+    setTheme(theme);
+  }, []);
 
   return (
     <ThemeProvider theme={currentTheme}>
